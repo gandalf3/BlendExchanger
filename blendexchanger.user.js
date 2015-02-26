@@ -10,6 +10,9 @@
 //CONFIG URL - I put it here where it is easy to change
 var urlEmbed = "http://blend-exchange.giantcowfilms.com/embedUpload/?qurl=" + document.URL;
 
+//Quiet debugging prints
+console.log = function() {};
+
 //stuff in main is run with jquery:
 function main() {
     var pref_extra_markdown = 0
