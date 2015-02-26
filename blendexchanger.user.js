@@ -24,7 +24,7 @@ function main() {
         $(document).on('click', 'input[value="Improve"]', waitForButtonRow); //improving suggested edits
         $(document).on('click', 'input[value="Edit"]', waitForButtonRow); //editing close voted questions
 
-        //define keyboard shortcut even handler (Ctrl+Y)
+        //define keyboard shortcut even handler (Alt+B)
         $(document).on('keydown', "textarea.wmd-input", function (e) {
             if (e.altKey && (e.which === 66)) {
                 insertBlendFileDialog(this, urlEmbed);
@@ -50,7 +50,7 @@ function main() {
                               injectButton($(this));
                             }
                             else {
-                              console.log("no buttons allowed on ask question page")
+                              console.log("no buttons allowed on ask question page");
                             }
                         }
                     });
@@ -79,8 +79,17 @@ function main() {
         li.attr('id', blendButtonId);
         li.attr('title', 'Upload .blend to Blend-Exchange Alt+B');
         li.addClass('wmd-button wmd-blend-button');
+        
+        var click_timeout = false;
         li.click(function() {
-            insertBlendFileDialog($(this).parents("div[class='wmd-container']").find("textarea").first()[0],urlEmbed);
+            if (click_timeout == false) { //prevent user from clicking while popup is being created
+              click_timeout = true;
+              insertBlendFileDialog($(this).parents("div[class='wmd-container']").find("textarea").first()[0],urlEmbed);
+              setTimeout(function() { click_timeout = false }, 500);
+            }
+            else {
+              console.log("Too many clicks, too fast. Not doing anything");
+            }
         });
 
         //shuffle existing buttons around so blend button is the one after image button
@@ -110,7 +119,7 @@ function main() {
     }
     
     function insertBlendFileDialog(txta, url) {
-        
+        console.log("popup")
         //for easy adjustment of popup size
         var popupWidth = 640;
         var popupHeight = 400;
@@ -144,12 +153,12 @@ function main() {
     };
     
     function insertBlendFile(txta,embedCode) {
+      console.log(embedCode);
  
         if (txta.selectionStart == null) return;
- 
+        //embed insertion getting fired multipole times investigate
         var start = txta.selectionStart;
         var end = txta.selectionEnd;
-        var added = 0;
         var chars = txta.value;
         console.log("chars: " + chars);
  
@@ -158,7 +167,7 @@ function main() {
         var post = chars.slice(end);
  
         //TODO Remove unessary stuff
-        if (start != end) {
+        /*if (start != end) {
             var sel = chars.slice(start, end);
             console.log("sel: " + sel);
             sel = sel.match(/(?:\S+|\s)/g); //split string around whitespace without deleting whitespace, thanks to this SO post: http://stackoverflow.com/a/24504047/2730823
@@ -177,15 +186,15 @@ function main() {
             }
  
         }
-        else { /*if there is no selection, assign sel to an array so that sel.join returns ""*/
+        else { //if there is no selection, assign sel to an array so that sel.join returns ""
             var sel = ["", ];
-        }
+        }*/
         //put everything back together again
         txta.value = pre + embedCode + post;
-        //BROKEN:
-        added = sel.join("").length + 11
-        //TODO, this is broken. Need to update cursor position calculation
-        txta.selectionStart = txta.selectionEnd = pre.length + ((start == end) ? 5 : added); //remove the selection and move
+      
+        //highlight newly added embed code
+        txta.selectionStart = pre.length
+        txta.selectionEnd = pre.length + embedCode.length;
  
         $(txta).focus();
  
@@ -199,22 +208,8 @@ function main() {
         var keyboardEvent = document.createEvent("KeyboardEvent");
         var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
 
-        /*keyboardEvent[initMethod](
-                       "keydown", // event type : keydown, keyup, keypress
-                        true, // bubbles
-                        true, // cancelable
-                        window, // viewArg: should be window
-                        false, // ctrlKeyArg
-                        false, // altKeyArg
-                        false, // shiftKeyArg
-                        false, // metaKeyArg
-                        17, // keyCodeArg : unsigned long the virtual key code, else 0
-                        0 // charCodeArgs : unsigned long the Unicode character associated with the depressed key, else 0
-        );
-        element.dispatchEvent(keyboardEvent);*/
         
         //horrible hack so undo after inserting blend tags only removes blend tags
-        //TODO not sure why this works, need to investigate at some point..
         keyboardEvent[initMethod](
                        "keydown", // event type : keydown, keyup, keypress
                         true, // bubbles
