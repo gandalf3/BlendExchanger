@@ -1,2 +1,2 @@
-# BlendExchange-for-StackExchange
-A userscript which allows uploading to blendexchange directly from blender.stackexchange
+# BlendExchanger
+A userscript which allows uploading to Blend-Exchange directly from blender.stackexchange

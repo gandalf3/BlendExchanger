@@ -1,13 +1,11 @@
 // ==UserScript==
-// @name        BlendExchange for blender.stackexchange
+// @name        BlendExchanger
 // @namespace   blender.org
 // @description Upload to BlendExchange directly from StackExchange
 // @include     *blender.stackexchange.com/*
 // @version     1
 // @grant       none
 // ==/UserScript==
-
-// @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
 
 //CONFIG URL - I put it here where it is easy to change
 var urlEmbed = "http://blend-exchange.giantcowfilms.com/embedUpload/?qurl=" + document.URL;
@@ -44,8 +42,7 @@ function main() {
             if (counter < 60) {
                 if ($(".wmd-button-row").length > 0) { //if button row(s) exist, test each one to see if it already has a blend button
                     console.log("found .wmd-button-row");
-                    $(".wmd-button-row").each(function() {console.log("does it have a blend button? ", $(this).has(".wmd-blend-button").length);console.log("id", 
-$(this).attr("id"))});
+                    $(".wmd-button-row").each(function() {console.log("does it have a blend button? ", $(this).has(".wmd-blend-button").length);console.log("id", $(this).attr("id"))});
                     $(".wmd-button-row").each(function() {
                         if ($(this).has(".wmd-blend-button").length == 0) { //if no blend button exists, inject one
                             console.log("does not contain blend button, inserting one");
@@ -119,8 +116,7 @@ $(this).attr("id"))});
         console.log("left", left)
         console.log("top", top)
         
-        var blendUploadWindow = window.open(url, "Blend-Exchange wormhole portal vortex uploader thingy", "width=" + popupWidth + ",height=" + popupHeight + 
-",toolbar=no,menubar=no,location=no,status=no,scrollbars=no,resizable=no,left=" + left + ",top=" + top);
+        var blendUploadWindow = window.open(url, "Blend-Exchange wormhole portal vortex uploader thingy", "width=" + popupWidth + ",height=" + popupHeight + ",toolbar=no,menubar=no,location=no,status=no,scrollbars=no,resizable=no,left=" + left + ",top=" + top);
  
         window.addEventListener("message", function (event) {
             //It is necessary to check the origin form stopping foreign pages hijacking the event
@@ -277,4 +273,3 @@ function add_jQuery (callbackFn, jqVersion) {
     }, false);
     targ.appendChild (scriptNode);
 }
-
