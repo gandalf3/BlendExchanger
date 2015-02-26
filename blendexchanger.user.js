@@ -28,9 +28,9 @@ function main() {
         $(document).on('click', 'input[value="Edit"]', waitForButtonRow); //editing close voted questions
 
         //define keyboard shortcut even handler (Ctrl+Y)
-        $(document).on('keydown', "textarea.wmd-input", function(e) {
-            if (e.ctrlKey && (e.which === 89)) {
-               insertBlendFileDialog(this, urlEmbed);
+        $(document).on('keydown', "textarea.wmd-input", function (e) {
+            if (e.altKey && (e.which === 66)) {
+                insertBlendFileDialog(this, urlEmbed);
             }
         });
         
@@ -75,7 +75,7 @@ $(this).attr("id"))});
 
         var li = $("<li/>");
         li.attr('id', blendButtonId);
-        li.attr('title', 'Upload .blend to BlendExchange');
+        li.attr('title', 'Upload .blend to Blend-Exchange Alt+B');
         li.addClass('wmd-button wmd-blend-button');
         li.click(function() {
             insertBlendFileDialog($(this).parents("div[class='wmd-container']").find("textarea").first()[0],urlEmbed);
@@ -105,117 +105,22 @@ $(this).attr("id"))});
         OVFf3AKz7yAPGzUXuWQyoWk5EogSOAgC8%2Bq2od4FPXt5JMbgZ4WPgoylYXapyh%2Bi%2Bm1NMb2RopQf9N1fSmVifd11ly9F\
         ppN4zSV6R3tIKBazW6NDE3%2BR4rGH9wFCTM7PoILZz52y34AnZsz2CzgIFUAAAAASUVORK5CYII%3D');
         
-        //un-optimized version:
-        
-        /*data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QAoACgAKCGy\
-        tphAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJTUUH3wIZCjcLci%2BzRQAAA6pJREFUOMullG9M1HUcx1%2B%2F\
-        7x3HcdxpnoLHTS4Cjou8DHogrpW1DBXTOZfJppuryXKzWA%2FcWpZrbf150HoQuWo0R3NaLpZFQ1ksIx3irpTtIHYBE\
-        n8EOcTx9477%2F%2Ft9ewBcnqI%2B6P3ou%2Ff3831%2FP%2B99%2FijcBo%2FHI%2F1%2BP2azGYCsrCzuhZKSEmUpXn\
-        %2B7WFlZGQ0NDVjMFvLy8pBIABQFpAQFkIDf7wcQ9xRcFANwOp04HI5kwPiJ1wgNtZNTdYp0ezEPgvD5fJ8DdHZ20t3djc1m\
-        SwmY67lATvGT3Ko%2FTKi37cGCsVis2u12U1BQQG5uLgaDISVAS8SRkQAOVxETPx1BjrRzcTBOwbueyxxqffFOQcXr9crCwk\
-        Ii%2FR5unqpGkzJ5mQhOoDevxJBhJudRN0p6JnVt0zTbX2fb7g2cPOP7%2B%2Br10Ftqzfqmu4py44uXcW2tRJMCRQhQdKiJ\
-        ODqDcb4Uio4fBy00WXexded6urpmeGXP2uLMxr6aK%2B90KYGP3edSMpz6vpqA73ciwWmy3M9hfTgf%2FbLVCOdmhG0d9W0DH\
-        L8wyNO7NuIfCCKEgsmUhsuVydnzI6Pe0egbw0cKf06WfkXlMXL21oAmsToeQSggnFto6jdTXHWaT8%2F2sKriWa6MhjAY558Zj\
-        YLZWY3tL6yxb8gz16a%2FP7A5aXnO9xtj3xygaNt%2BdBkW5OQASnYxtTWNBGIaJlXyz5kWVlktxEpdCARGo8DbPkwE%2FaTQ6Y\
-        nGpXte8EYHY3Wv4qrYS3B6CmVmhgwRZKGvsWcAM5NkW01oWJgORzFracniVa38y15RUREHELreZvo%2F24Fryx56fjnN8KVGEvEY\
-        hKeIDv3JwR1PALDaakqeVU0jGAqx2BCLYgB6teUTXOW76WmuJ%2BelD5m95mF2fJDM9HFk3TM8v%2F9XttfuQ00kmBjp5SsthqpJo\
-        qHwfJ9K1NTRc5ZzraWR%2FMPnUHIeh9xSRmt2MramANtD%2BcgT5YSAsJbGMl0cfa6XYDiBiMUX5ltqqYKb3ib%2F4PEkYbSvx\
-        XGgluGTb9KfsRy7fSOZBhWL1IirgkC2jbnJWZarCVRVQ1GU8JLbJoUs2kTR0YtMnP%2BSodZvUQJjSASKaQWlxku0ynUIIYiE\
-        o1rPzcgPS45ecna1%2FxwIcfeGuhXR%2BPryCNcj6d%2F1%2BeOuP%2FomD3Hsqav3zfB%2ByDIKKh0xSkoe27dA6VK2Df8PO\
-        pLdumBZSnm0o6Pjg6UsL9q%2Bk3O73e8ZDIaPlvrhXyo9gDK7YfodAAAAAElFTkSuQmCC*/
-        
-        
-        
-        //define RMB preferences menu
-        
-        /*
-        $(li).on("contextmenu", function(e) {
-            e.preventDefault();
-            console.log("started creating context menu. pref_extra_markdown =", pref_extra_markdown)
-            //check if a preference menu already exists
-            console.log("contextmenu.length: " + $("#blend-context-menu").length)
-            
-            if ($("#blend-context-menu").length < 1) { //ensure context menu doesn't already exist
-                
-            //console.log("contextmenu")
-            var div = $("<div>").appendTo($(li).parent());
-            div.attr("id", "blend-context-menu")
-            var pOffset = $(li).parent().offset();
-            div.css({"position": "absolute", "left": (e.pageX-pOffset.left)+5 + "px", "top": (e.pageY-pOffset.top) + "px",
-                     "background-color": "rgba(0,0,0,.7)",
-                     "color": "#f8f8f8",
-                     "padding": "5px",
-                     "padding-top": "1px",
-                     "border-radius": "5px",
-                     "box-shadow": "5px 5px 10px rgba(0,0,0,.7)"});
-
-            var ul = $("<ul>").appendTo(div);
-            
-            ul.css({"list-style": "none",
-                    "margin": "3px",
-                    "cursor": "default"});
-                
-            //styling for headings, links
-            ul.append("<li id='blend_info_links'>");
-            $("#blend_info_links").html("<a href='http://meta.blender.stackexchange.com/a/391/599' title='Go to meta post for discussion and feedback'>About</a>").css({"font-size": 
-"6pt"});
-            ul.append("<li id='blend_context_title'>");
-            $("#blend_context_title").html("Preferences:<br><hr>").css({"font-weight": "bold"});
-            $("#blend_context_title hr").css({"margin": "0", "background-color": "rgba(200,200,200,.2)"});
-                
-                //TODO stylize checkbox
-            
-            ul.append("<li id='entry1'>");
-            $("#entry1").html("Extra markdown <input type='checkbox' />");
-            $("#entry1").attr("title", "Insert mouse and modifier key icons");
-            $("#entry1 > input").css({"margin": "0"});
-            //console.log("div height: " + div.css("height"));
-            div.css({"top": (e.pageY-pOffset.top) - parseInt(div.css("height")) });
-                
-                //bind mouse sensors to the menu so it goes away on mouse off:
-                var vanish_delay = setTimeout(function() {$("#blend-context-menu").fadeOut(500,function() {$(this).remove()})}, 1500);
-                div.mouseleave(function() {
-                    vanish_delay = setTimeout(function() {$("#blend-context-menu").fadeOut(500,function() {$(this).remove()})}, 500);
-                })
-                div.mouseenter(function() {
-                    console.log("on context menu");
-                    clearTimeout(vanish_delay);
-                })
-                
-                //store preferences
-                if (typeof get_prefs === "function") { //for normal chrome extensions get_prefs will be outside of scope
-                    console.log("toggle_markdown:", get_prefs());
-                    if (get_prefs() == 1) {
-                        $("#entry1 > input").prop("checked", 1);
-                    }
-                }
-                else { //if being run as chrome extension, use normal variable instead
-                    console.log("get_prefs not found, probably running as chrome extension.", "WARNING: preferences won't be saved accross page loads")
-                    if (pref_extra_markdown == 1) {
-                        $("#entry1 > input").prop("checked", 1);
-                    }
-                }
-                
-                //bind mouse click sensor to the checkbox:
-                if (typeof toggle_extra_markdown === "function") {
-                   $("#entry1 > input").click(toggle_extra_markdown)
-                }
-                else {
-                    $("#entry1 > input").click(function(){pref_extra_markdown ^= 1}) //toggle non persistent var with xor operator
-                }
-            }
-            else {
-                $("#blend-context-menu").remove() //right clicking on the icon when there is an existing context menu will remove it
-            }
-            console.log("finished creating context menu. pref_extra_markdown =", pref_extra_markdown)
-        });
-        */
     }
     
     function insertBlendFileDialog(txta, url) {
- 
-        //Not sure what all of this does 640px to allo for some breathing room
-        var blendUploadWindow = window.open(url, '1424873319323', 'width=640,height=500,toolbar=no,menubar=no,location=no,status=0,scrollbars=0,resizable=0,left=500,top=500');
+        
+        //for easy adjustment of popup size
+        var popupWidth = 640
+        var popupHeight = 400
+        
+        var left = (($(window).width()/2)+window.screenX)-(popupWidth/2);
+        var top = (($(window).height()/2)+window.screenY)-(popupHeight/2);
+        
+        console.log("left", left)
+        console.log("top", top)
+        
+        var blendUploadWindow = window.open(url, "Blend-Exchange wormhole portal vortex uploader thingy", "width=" + popupWidth + ",height=" + popupHeight + 
+",toolbar=no,menubar=no,location=no,status=no,scrollbars=no,resizable=no,left=" + left + ",top=" + top);
  
         window.addEventListener("message", function (event) {
             //It is necessary to check the origin form stopping foreign pages hijacking the event
@@ -285,19 +190,6 @@ $(this).attr("id"))});
  
         updateMarkdownPreview(txta);
  
-        /*
-        // jQuery-way doesn't work :(
-        var evt = $.Event('keydown');
-        evt.which = 17;
-        evt.keyCode = 17; // Ctrl
-        $(txta).trigger(e);
- 
-        // another failing attempt
-        $(txta).trigger({
-            type: "keydown",
-            which : 17
-        });
-        */
     }
 
     //function to force update the live markdown render
