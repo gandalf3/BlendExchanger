@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        BlendExchanger
 // @namespace   blender.org
-// @description Upload to BlendExchange directly from StackExchange
+// @description Upload .blends to Blend-Exchange directly from StackExchange
 // @include     *blender.stackexchange.com/*
 // @version     1
 // @grant       none
@@ -19,7 +19,6 @@ function main() {
         
         //add blend button when any of these elements are clicked:
         $(document).on('click', 'a.edit-post', waitForButtonRow); //inline editing
-        $(document).on('click', 'input#answer-from-ask', waitForButtonRow); //answering own question in ask questions page
         $(document).on('click', 'input[value="Add Another Answer"]', waitForButtonRow); //adding multiple answers
         //review editing:
         $(document).on('click', 'input[value="Improve"]', waitForButtonRow); //improving suggested edits
@@ -45,8 +44,14 @@ function main() {
                     $(".wmd-button-row").each(function() {console.log("does it have a blend button? ", $(this).has(".wmd-blend-button").length);console.log("id", $(this).attr("id"))});
                     $(".wmd-button-row").each(function() {
                         if ($(this).has(".wmd-blend-button").length == 0) { //if no blend button exists, inject one
-                            console.log("does not contain blend button, inserting one");
-                            injectButton($(this));
+                          
+                            if (document.URL.indexOf("blender.stackexchange.com/questions/ask") < 1) { //but only add button if we are not asking a question
+                              console.log("does not contain blend button, inserting one");
+                              injectButton($(this));
+                            }
+                            else {
+                              console.log("no buttons allowed on ask question page")
+                            }
                         }
                     });
                 }
@@ -107,14 +112,14 @@ function main() {
     function insertBlendFileDialog(txta, url) {
         
         //for easy adjustment of popup size
-        var popupWidth = 640
-        var popupHeight = 400
+        var popupWidth = 640;
+        var popupHeight = 400;
         
         var left = (($(window).width()/2)+window.screenX)-(popupWidth/2);
         var top = (($(window).height()/2)+window.screenY)-(popupHeight/2);
         
-        console.log("left", left)
-        console.log("top", top)
+        console.log("left", left);
+        console.log("top", top);
         
         var blendUploadWindow = window.open(url, "Blend-Exchange wormhole portal vortex uploader thingy", "width=" + popupWidth + ",height=" + popupHeight + ",toolbar=no,menubar=no,location=no,status=no,scrollbars=no,resizable=no,left=" + left + ",top=" + top);
  
@@ -240,7 +245,7 @@ function main() {
     }
     
     
-    startInjection() //call initial startup function (bind keyboard shortcuts, etc.)
+    startInjection() //call initial startup function
 }
 main();
 
