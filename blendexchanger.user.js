@@ -16,7 +16,8 @@
 
 // Additional credits: GiantCowFilms, CoDEmanX, and iKlsR
 
-
+//Environment Variables
+const origin = "https://blend-exchange.giantcowfilms.com";
 
 // Shortcut is Alt+B by default, you can change it here if you wish
 function shortcutShouldFire(ev) {
@@ -24,7 +25,7 @@ function shortcutShouldFire(ev) {
 }
 
 // URL of blend-exchange embeded upload view
-const EmbedURL = "https://blend-exchange.giantcowfilms.com/embedUpload/?qurl=" + document.URL;
+const EmbedURL = origin + "/embedUpload/?qurl=" + document.URL;
 
 //Quiet debugging prints
 console.log = function() {};
