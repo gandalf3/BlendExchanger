@@ -114,7 +114,7 @@ function main() {
       });
 
       //insert out button after the image button
-      let image_button = buttonRow.querySelector("#wmd-image-button");
+      let image_button = buttonRow.querySelector("[id^=wmd-image]");
       buttonRow.insertBefore(li, image_button.nextSibling);
 
       //Add image element with base64 encoded png icon
