@@ -1,10 +1,22 @@
 // ==UserScript==
 // @name        BlendExchanger
-// @namespace   blender.org
-// @description Upload .blends to Blend-Exchange without leaving StackExchange
 // @include     *blender.stackexchange.com/*
-// @version     2.0
+// @description Upload .blends to Blend-Exchange without leaving StackExchange
+// @version     2.0.0
+// @license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
+// @namespace   blender.org
+// @updateURL   https://openuserjs.org/meta/gandalf3/BlendExchanger.meta.js
+// @downloadURL https://openuserjs.org/src/scripts/gandalf3/BlendExchanger.user.js
+// @icon        data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V%2B0%2FAAABaFBMVEUAAAAAAABUpudZo%2BD9%2Ff0BbMcKfdp1wO9bpOBNoeNClts3jdQ3kdgje8hbqt00jdjW1tYAe94dh9wAbca3t7f09PTQ0NDy8vLOzs7RaBPo6Oj3s3LTdSdotO%2FIyMj1rWlKdqz3sGrRbBr0eAD%2F%2F%2F%2F8%2BvmB0PmAzPhbpOCxw9tIisb028XtzLEzZKLahDv2ljrPZxKZ5f%2BW4v%2F9%2Ff2N2f16xvZvvPJRr%2BQzmtpJltJElNDr2Mjv1L5Hhr67u7sxdLWvr68fXqPtoV3clVvqnFfUeS7PZQ%2FOXQNXy%2Fvf7PJKufBmu%2B3s7OxisOs%2FrOhWsuZWpuH3699Epd%2BnwtxMnNjX19d5stbU1NTn3dP75dD75c%2BPrslKjMZDgrzz17s0eLnozLdwnKzqu5b5wInTqomllIH4un7kp3X0qWLjnWHypmD3qF2RclvQjVj2olHjk1DqlUr2mUDskj7ZfjT0jCj0iSLWcyDqdgVv3a2kAAAAFXRSTlMCAOv7fExK%2FfHl3dbMyKWdknRRNgeqtpszAAABIklEQVQY023R1XLCQBSA4YQCdW%2BybJcQQ%2BO4u9Xd3d319bskpcx0%2BC%2F24rs4M2cPQZKkp1Qo0FakGYHNW%2FJMW7kIK2zebQBA1Z0FoI1jHnpzAaNQ007%2BkKYoCuCMl5t6bn%2FY8Ys5Nw663%2B%2FYh4PIoMNCyLM8YhFCl%2FkYExlwmnj7ZTyj873o%2BqGfYRLh%2FglzptJAaDdULs7MJZh4LGxzYlQge3Xv48rFY2me8QdttnGCliFfqTz5OFXlpOVFf3AKz7yAPGzUXuWQyoWk5EogSOAgC8%2Bq2od4FPXt5JMbgZ4WPgoylYXapyh%2Bi%2Bm1NMb2RopQf9N1fSmVifd11ly9FppN4zSV6R3tIKBazW6NDE3%2BR4rGH9wFCTM7PoILZz52y34AnZsz2CzgIFUAAAAASUVORK5CYII%3D
 // ==/UserScript==
+
+// ==OpenUserJS==
+// @author gandalf3
+// ==/OpenUserJS==
+
+// Additional credits: GiantCowFilms, CoDEmanX, and iKlsR
+
+
 
 // Shortcut is Alt+B by default, you can change it here if you wish
 function shortcutShouldFire(ev) {
