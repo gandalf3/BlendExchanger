@@ -16,16 +16,15 @@
 
 // Additional credits: GiantCowFilms, CoDEmanX, and iKlsR
 
-//Environment Variables
-const origin = "https://blend-exchange.giantcowfilms.com";
+
+// URL of blend-exchange embeded upload view
+const Origin = "https://blend-exchange.giantcowfilms.com";
+const EmbedURL = Origin + "/embedUpload/?qurl=" + document.URL;
 
 // Shortcut is Alt+B by default, you can change it here if you wish
 function shortcutShouldFire(ev) {
    return (ev.altKey && (ev.key == 'b'));
 }
-
-// URL of blend-exchange embeded upload view
-const EmbedURL = origin + "/embedUpload/?qurl=" + document.URL;
 
 //Quiet debugging prints
 console.log = function() {};
