@@ -2,7 +2,7 @@
 // @name        BlendExchanger
 // @include     *blender.stackexchange.com/*
 // @description Upload .blends to Blend-Exchange without leaving StackExchange
-// @version     2.0.0
+// @version     2.0.1
 // @license     GPL-3.0-or-later; http://www.gnu.org/licenses/gpl-3.0.txt
 // @namespace   blender.org
 // @updateURL   https://openuserjs.org/meta/gandalf3/BlendExchanger.meta.js
