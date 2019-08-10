@@ -17,14 +17,15 @@
 // Additional credits: GiantCowFilms, CoDEmanX, and iKlsR
 
 
-// URL of blend-exchange embeded upload view
-const Origin = "https://blend-exchange.giantcowfilms.com";
-const EmbedURL = Origin + "/embedUpload/?qurl=" + document.URL;
 
 // Shortcut is Alt+B by default, you can change it here if you wish
 function shortcutShouldFire(ev) {
    return (ev.altKey && (ev.key == 'b'));
 }
+
+// URL of blend-exchange embedded upload view
+const SiteURL = "https://alpha-blend-exchange.giantcowfilms.com"
+const EmbedURL = SiteURL + "/embedUpload/?qurl=" + document.URL;
 
 //Quiet debugging prints
 console.log = function() {};
@@ -108,7 +109,7 @@ function main() {
         console.log(respond_to_click);
          if (respond_to_click == true) {
             respond_to_click = false;
-            insertBlendFileDialog(li.parentNode.querySelector("div[class='wmd-container'] textarea"), EmbedURL);
+            insertBlendFileDialog(buttonRow.parentNode.parentNode.querySelector(".wmd-input"), EmbedURL);
             setTimeout(function() { respond_to_click = true }, 500);
          }
       });
@@ -146,33 +147,34 @@ function main() {
       console.log("left", left);
       console.log("top", top);
 
-      var blendUploadWindow = window.open(url, "Blend-Exchange wormhole portal vortex uploader thingy", "width=" + popupWidth + ",height=" + popupHeight + ",toolbar=no,menubar=no,location=no,status=no,scrollbars=no,resizable=no,left=" + left + ",top=" + top);
-
+      var blendUploadWindow = window.open(url, "Blend-Exchange wormhole portal vortex uploader thingy", "width=" + popupWidth + ",height=" + popupHeight + ",toolbar=no,menubar=no,location=no,status=no,scrollbars=yes,resizable=no,left=" + left + ",top=" + top);
+     
       window.addEventListener("message", function (event) {
          //It is necessary to check the origin form stopping foreign pages hijacking the event
-         if (event.data.name == "embedSource" && event.origin == "http://blend-exchange.giantcowfilms.com") {
-            console.log("Event Fired");
+         if (event.data.name == "embedSource" && event.origin == SiteURL) {
+
             //Get the embed code
             embedCode = event.data.content;
-            //Log the vent to debug
-            console.log(event.data.content);
+
             insertBlendFile(txta, embedCode);
+           
             //Check if window is closed, if not close it
             if (false == blendUploadWindow.closed) {
                blendUploadWindow.close();
             }
          } else {
-            console.log(event);
-            console.log("Invalid Event Fired");
+            console.log("Unknown event fired", event);
          }
       });
    };
 
    function insertBlendFile(txta,embedCode) {
-      console.log(embedCode);
-
-      if (txta.selectionStart == null) return;
-      //embed insertion getting fired multipole times investigate
+     
+      if (txta.selectionStart == null) {
+        console.log("selectionStart is null? aborting");
+       	return;
+      }
+      
       var start = txta.selectionStart;
       var end = txta.selectionEnd;
       var chars = txta.value;
