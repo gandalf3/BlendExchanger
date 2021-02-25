@@ -24,7 +24,7 @@ function shortcutShouldFire(ev) {
 }
 
 // URL of blend-exchange embedded upload view
-const SiteURL = "https://blend-exchange.giantcowfilms.com"
+const SiteURL = "https://blend-exchange.com"
 const EmbedURL = SiteURL + "/embedUpload/?qurl=" + document.URL;
 
 //Quiet debugging prints
